@@ -1,0 +1,9 @@
+
+-- coloquei unimed porque Hapvida não tem
+
+SELECT * FROM (SELECT pa.plano_de_saude,pa.nome, c.descricao, c.diagnostico, count(pa.nome) FROM tb_paciente pa
+INNER JOIN tb_consulta c
+ON DEREF(c.paciente).cpf = pa.cpf
+GROUP BY pa.nome, c.descricao, c.diagnostico, pa.plano_de_saude
+HAVING count(pa.nome)>=2)
+WHERE plano_de_saude = 'Unimed';
