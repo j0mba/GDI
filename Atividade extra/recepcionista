@@ -1,0 +1,432 @@
+-- Testa a fun��o sys_xmlgen
+-- SELECT SYS_XMLGEN(*) as XML FROM tb_paciente;
+
+set serveroutput on;
+
+DECLARE
+    ctx dbms_xmlgen.ctxhandle;
+    answer clob;
+BEGIN
+    -- criar um novo contexto para a consulta SQL
+    ctx := dbms_xmlgen.newContext('SELECT r.id, r.nome, r.telefone, r.endereco FROM tb_recepcionista r');
+    -- personalizar as tags raiz e de entidade
+    DBMS_XMLGEN.setRowsetTag(ctx, 'CLINICA');
+    DBMS_XMLGEN.setRowTag(ctx,'RECEPCIONISTA');
+    -- gerar um valor CLOB como resultado
+    answer := dbms_xmlgen.getXML(ctx);
+    -- dar sa�da do resultado
+    dbms_output.put_line(answer);
+    
+    -- fechar o contexto
+    dbms_xmlgen.closeContext(ctx);
+END;
+/
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="recep.css"?>
+    <CLINICA xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3schools.com recep.xsd">
+ <RECEPCIONISTA>
+  <ID>766</ID>
+  <NOME>Tobias
+G. Payne</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11981546846</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>4394980</CEP>
+   <LOGRADOURO>Ap
+Orci, Rd.</LOGRADOURO>
+   <NUMERO>7332</NUMERO>
+   <BAIRRO>bora bora</BAIRRO>
+
+
+<CIDADE>Ribeirao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+  </ENDERECO>
+
+</RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>783</ID>
+  <NOME>Joan K. Mcclure</NOME>
+
+<TELEFONE>
+   <TP_FONE>
+    <NUMERO>11953040116</NUMERO>
+   </TP_FONE>
+
+
+</TELEFONE>
+  <ENDERECO>
+   <CEP>99694914</CEP>
+   <LOGRADOURO>P.O. Box 631,
+9041 Dictum. St.</LOGRADOURO>
+   <NUMERO>4028</NUMERO>
+   <BAIRRO>ze da
+rocha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>534</ID>
+  <NOME>Thaddeus
+O. Floyd</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11949527192</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>9469342</CEP>
+   <LOGRADOURO>Ap
+#156-3421 Sed St.</LOGRADOURO>
+   <NUMERO>5992</NUMERO>
+   <BAIRRO>neguinho da
+beija-flor</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>429</ID>
+  <NOME>Hiroko P.
+Strong</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11982112721</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>22011493</CEP>
+   <LOGRADOURO>4601
+Sodales Ave</LOGRADOURO>
+   <NUMERO>3812</NUMERO>
+   <BAIRRO>neguinho da
+beija-flor</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>272</ID>
+  <NOME>Conan S.
+Young</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11972627954</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>60904613</CEP>
+   <LOGRADOURO>5313
+Rutrum Av.</LOGRADOURO>
+   <NUMERO>9437</NUMERO>
+   <BAIRRO>neguinho da
+beija-flor</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>341</ID>
+  <NOME>Calista M.
+Miles</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11914878995</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>87876758</CEP>
+   <LOGRADOURO>P.O.
+Box 957, 7777 Duis Road</LOGRADOURO>
+   <NUMERO>6101</NUMERO>
+
+
+<BAIRRO>neguinho da beija-flor</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+
+<ESTADO>SP</ESTADO>
+  </ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+
+
+<ID>638</ID>
+  <NOME>Rhiannon F. Huffman</NOME>
+  <TELEFONE>
+   <TP_FONE>
+
+
+<NUMERO>11932335739</NUMERO>
+   </TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+
+
+<CEP>88468311</CEP>
+   <LOGRADOURO>4908 Dis Rd.</LOGRADOURO>
+
+
+<NUMERO>4448</NUMERO>
+   <BAIRRO>amor e mio</BAIRRO>
+   <CIDADE>Riberao
+Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+  </ENDERECO>
+ </RECEPCIONISTA>
+
+
+<RECEPCIONISTA>
+  <ID>136</ID>
+  <NOME>Florence I. Webster</NOME>
+  <TELEFONE>
+
+
+<TP_FONE>
+    <NUMERO>11996053276</NUMERO>
+   </TP_FONE>
+  </TELEFONE>
+
+
+<ENDERECO>
+   <CEP>41618970</CEP>
+   <LOGRADOURO>Ap #436-9900 Vitae
+Ave</LOGRADOURO>
+   <NUMERO>5715</NUMERO>
+   <BAIRRO>amor e mio</BAIRRO>
+
+
+<CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+  </ENDERECO>
+
+</RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>630</ID>
+  <NOME>Wenndy U.
+Dotson</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11956025384</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>1527203</CEP>
+   <LOGRADOURO>Ap
+#576-8057 Non, Rd.</LOGRADOURO>
+   <NUMERO>5200</NUMERO>
+   <BAIRRO>amor e
+mio</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>418</ID>
+  <NOME>Azagal E.
+William</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11965434602</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>87561054</CEP>
+   <LOGRADOURO>8998
+Semper Av.</LOGRADOURO>
+   <NUMERO>5597</NUMERO>
+   <BAIRRO>amor e mio</BAIRRO>
+
+<CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+  </ENDERECO>
+
+</RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>57</ID>
+  <NOME>Cartman L. Black</NOME>
+
+<TELEFONE>
+   <TP_FONE>
+    <NUMERO>11912342704</NUMERO>
+   </TP_FONE>
+
+
+</TELEFONE>
+  <ENDERECO>
+   <CEP>94458896</CEP>
+   <LOGRADOURO>973-5657 Mauris
+Road</LOGRADOURO>
+   <NUMERO>260</NUMERO>
+   <BAIRRO>amor e mio</BAIRRO>
+
+
+<CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+  </ENDERECO>
+
+</RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>910</ID>
+  <NOME>Carly N.
+Woodward</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11934513883</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>46053982</CEP>
+   <LOGRADOURO>Ap
+#290-7759 Amet Avenue</LOGRADOURO>
+   <NUMERO>8448</NUMERO>
+   <BAIRRO>caca de
+ovelha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>130</ID>
+  <NOME>Kenny R.
+Dawson</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11916448347</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>94887770</CEP>
+   <LOGRADOURO>Ap
+#748-4728 Sem, Rd.</LOGRADOURO>
+   <NUMERO>4733</NUMERO>
+   <BAIRRO>caca de
+ovelha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>402</ID>
+  <NOME>McKenzie
+Q. Dale</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11974949848</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>46556331</CEP>
+   <LOGRADOURO>3729
+Neque St.</LOGRADOURO>
+   <NUMERO>4237</NUMERO>
+   <BAIRRO>caca de
+ovelha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>184</ID>
+  <NOME>Eden X.
+Whitaker</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11912797858</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>24261888</CEP>
+   <LOGRADOURO>P.O.
+Box 696, 6688 Tellus Ave</LOGRADOURO>
+   <NUMERO>6358</NUMERO>
+   <BAIRRO>caca
+de ovelha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+ <RECEPCIONISTA>
+  <ID>629</ID>
+  <NOME>Osob S.
+Shelton</NOME>
+  <TELEFONE>
+   <TP_FONE>
+    <NUMERO>11919356526</NUMERO>
+
+
+</TP_FONE>
+  </TELEFONE>
+  <ENDERECO>
+   <CEP>12298647</CEP>
+   <LOGRADOURO>Ap
+#696-8880 Suspendisse Ave</LOGRADOURO>
+   <NUMERO>1789</NUMERO>
+   <BAIRRO>caca
+de ovelha</BAIRRO>
+   <CIDADE>Riberao Preto</CIDADE>
+   <ESTADO>SP</ESTADO>
+
+</ENDERECO>
+ </RECEPCIONISTA>
+</CLINICA>
+
+
+CLINICA {
+    display: table;
+    margin: 30px;
+}
+
+RECEPCIONISTA  {
+    display: table-row;
+    color: rgba(0,0,0,1);
+}
+
+NOME, ID, ENDERECO, TELEFONE {
+    border: 2px solid rgba(20,0,100,1);
+    padding: 0.3em;
+    display: table-cell;
+    vertical-align: top;
+    text-align: center;
+}
+
+CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, ESTADO {
+    display: inline-block;
+}
+
+CIDADE, ESTADO {
+    display: inline-block;
+}
